@@ -6,7 +6,7 @@ html, body {
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 10pt;
 }
-div#main {
+div#main 
   margin: 0;
   padding: 0 20px 20px;
 }
@@ -47,6 +47,9 @@ table#movies th {
 table#movies th, table#movies td {
   padding: 4px;
   text-align: left;
+}
+table#movies th.hilite {
+background-color: yellow ;
 }
 #notice #warning {
   background: rosybrown;

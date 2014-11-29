@@ -4,9 +4,12 @@
 %table#movies
   %thead
     %tr
-      %th Movie Title
+      %th#title_header{:class => [params[:order]== "title" && 'hilite']}=  link_to 'Movie Title', movies_path({"order" => "title"}) 
+	
       %th Rating
-      %th Release Date
+	
+      %th#release_date_header= link_to 'Release  date', movies_path({"order" => "release_date"}) 
+      	
       %th More Info
   %tbody
     - @movies.each do |movie|
