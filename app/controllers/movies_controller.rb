@@ -7,10 +7,12 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.find(:all,:order => params[:order], :conditions => {:rating => params[:ratings].keys})
+    @selections = {}
+    @selections = params[:ratings] if params.has_key? :ratings
+    @movies = Movie.find(:all,:order => params[:order], :conditions => {:rating => @selections.keys})
     @all_ratings = Movie.all_ratings
-    @selections =  {:rating => params[:ratings].keys}
-    flash[:notice] = params.inspect # + ratings.inspect
+
+    flash[:notice] = params.inspect  + @selections.inspect
   end
 
   def new
