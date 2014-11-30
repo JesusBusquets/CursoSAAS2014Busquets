@@ -7,13 +7,22 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.find(:all,:order => params[:order])
-    flash[:notice] = params.inspect
+    @movies = Movie.find(:all,:order => params[:order], :conditions => {:rating => params[:ratings].keys})
+    @all_ratings = Movie.all_ratings
+    @selections =  {:rating => params[:ratings].keys}
+    flash[:notice] = params.inspect # + ratings.inspect
+
   end
 
   def new
     # default: render 'new' template
   end
+  # Checks if user is new
+  def new
+     @user = Person.find(:first)
+     @user.active = true
+  end
+
 
   def create
     @movie = Movie.create!(params[:movie])
