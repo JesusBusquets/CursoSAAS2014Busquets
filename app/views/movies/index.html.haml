@@ -1,20 +1,21 @@
-%h1 All Movies 
- 
-%table#movies 
-  %thead 
-    %tr 
-      %th#title_header=  link_to 'Movie Title', movies_path({"order" => "title"}) 
-     
+-#  This file is app/views/movies/index.html.haml
+%h1 All Movies
+
+%table#movies
+  %thead
+    %tr
+      %th#title_header{:class => [params[:order]== "title" && 'hilite']}=  link_to 'Movie Title', movies_path({"order" => "title"}) 
+	
       %th Rating
-    
-      %th#release_date_header= link_to 'Release  date', movies_path({"order" => "release_date"})  
-           
-      %th More Info 
-  %tbody 
-    - @movies.each do |movie| 
-      %tr 
-        %td= movie.title  
-        %td= movie.rating 
+	
+      %th#release_date_header= link_to 'Release  date', movies_path({"order" => "release_date"}) 
+      	
+      %th More Info
+  %tbody
+    - @movies.each do |movie|
+      %tr
+        %td= movie.title 
+        %td= movie.rating
         %td= movie.release_date
         %td= link_to "More about #{movie.title}", movie_path(movie) 
  
